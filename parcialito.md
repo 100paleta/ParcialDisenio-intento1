@@ -1,64 +1,53 @@
 ```mermaid
 classDiagram
-    class Cine {
-        +nombre
-    }
+class Cine {
+  +nombre: String
+}
 
-    class Sala {
-        +numero
-        +cantidadAsientos
-        +tipo: String <<HD/3D/4D>>
-    }
+class Sala {
+  +numero: int
+  +asientos: int
+  +tipo: String  %% HD, 3D, 4D
+}
 
-    class Pelicula {
-        +titulo
-        +genero
-        +clasificacion
-    }
+class Pelicula {
+  +titulo: String
+  +genero: String
+  +clasificacion: String %% ATP, +16, etc.
+}
 
-    class Director {
-        +nombre
-        +apellido
-    }
+class Funcion {
+  +fecha: Date
+  +turno: String %% Mañana, Tarde, Noche, Trasnoche
+  +horario: Time
+  +precio: float
+}
 
-    class Protagonista {
-        +nombre
-        +apellido
-    }
+class Entrada {
+  +numeroAsiento: int
+  +fecha: Date
+  +turno: String
+}
 
-    class Personaje {
-        +nombre
-    }
+class Persona {
+  +nombre: String
+  +apellido: String
+  +rol: String %% Director, Actor, Cliente
+}
 
-    class Pase {
-        +fecha
-        +hora
-        +turno <<Mañana/Tarde/Noche/Trasnoche>>
-    }
+class Personaje {
+  +nombre: String
+}
 
-    class Precio {
-        +turno
-        +valor
-    }
+Cine "1" -- "1..*" Sala : contiene
+Sala "1" -- "0..*" Funcion : proyecta
+Funcion "1" -- "1" Pelicula : de
+Funcion "1" -- "0..*" Entrada : genera
 
-    class Entrada {
-        +asiento
-        +fecha
-        +turno
-    }
+Entrada "1" -- "1" Persona : compradaPor
+Personaje "1" -- "1" Persona : interpretadoPor
+Personaje "1" -- "1" Pelicula : perteneceA
 
-    class Persona {
-        +nombre
-        +apellido
-    }
-
-    Cine --> Sala
-    Cine --> Precio
-    Sala --> Pase
-    Pase --> Pelicula
-    Pelicula --> Director
-    Pelicula --> Protagonista
-    Protagonista --> Personaje
-    Entrada --> Sala
-    Entrada --> Pelicula
-    Entrada --> Persona
+Pelicula "1" -- "1" Persona : dirigidaPor
+Pelicula "1" -- "0..*" Personaje : tiene
+```
