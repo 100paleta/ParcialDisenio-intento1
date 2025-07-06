@@ -1,4 +1,4 @@
-mermaid'''
+```mermaid
 classDiagram
 class Carrera {
   +nombre: String
@@ -44,3 +44,4 @@ Comision "1" -- "1" Docente : aCargo
 Alumno "1" -- "0..*" Inscripcion : realiza
 Inscripcion "1" -- "1" Comision : aComision
 Inscripcion "1" -- "1" Materia : aMateria
+```
