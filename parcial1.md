@@ -45,10 +45,11 @@ Materia "0..*" -- "0..*" Materia : correlativa
 
 Curso "1" -- "1" Materia : materia
 Curso "1" -- "1" Comision : comision
-Curso "1" -- "1" Horario : horario
 Curso "1" -- "0..*" Inscripcion : tiene
-Curso "1" -- "1" Persona : docente
+Curso "1" -- "0..*" Horario : tiene
 
-Comision "1" -- "1" Aula : seDictaEn
+Horario "1" -- "1" Aula : seDictaEn
+Horario "1" -- "1" Persona : aCargo
+
 Inscripcion "1" -- "1" Persona : alumno
 ```
