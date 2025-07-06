@@ -10,15 +10,10 @@ class Materia {
   +nivel: int
 }
 
-class Alumno {
+class Persona {
   +legajo: int
   +nombre: String
-}
-
-class Comision {
-  +nombre: String
-  +horarioInicio: Time
-  +horarioFin: Time
+  +rol: String
 }
 
 class Aula {
@@ -26,9 +21,18 @@ class Aula {
   +capacidad: int
 }
 
-class Docente {
+class Comision {
   +nombre: String
-  +legajo: int
+}
+
+class Curso {
+  +anioLectivo: int
+}
+
+class Horario {
+  +dia: String
+  +horaInicio: Time
+  +horaFin: Time
 }
 
 class Inscripcion {
@@ -38,10 +42,13 @@ class Inscripcion {
 
 Carrera "1" -- "0..*" Materia : contiene
 Materia "0..*" -- "0..*" Materia : correlativa
-Materia "1" -- "1..*" Comision : tiene
+
+Curso "1" -- "1" Materia : materia
+Curso "1" -- "1" Comision : comision
+Curso "1" -- "1" Horario : horario
+Curso "1" -- "0..*" Inscripcion : tiene
+Curso "1" -- "1" Persona : docente
+
 Comision "1" -- "1" Aula : seDictaEn
-Comision "1" -- "1" Docente : aCargo
-Alumno "1" -- "0..*" Inscripcion : realiza
-Inscripcion "1" -- "1" Comision : aComision
-Inscripcion "1" -- "1" Materia : aMateria
+Inscripcion "1" -- "1" Persona : alumno
 ```
