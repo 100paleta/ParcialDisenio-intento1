@@ -1,5 +1,5 @@
+mermaid'''
 classDiagram
-mermain'''
 class Carrera {
   +nombre: String
   +nivel: int
