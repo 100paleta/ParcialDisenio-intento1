@@ -1,0 +1,46 @@
+classDiagram
+mermain'''
+class Carrera {
+  +nombre: String
+  +nivel: int
+}
+
+class Materia {
+  +nombre: String
+  +nivel: int
+}
+
+class Alumno {
+  +legajo: int
+  +nombre: String
+}
+
+class Comision {
+  +nombre: String
+  +horarioInicio: Time
+  +horarioFin: Time
+}
+
+class Aula {
+  +numero: int
+  +capacidad: int
+}
+
+class Docente {
+  +nombre: String
+  +legajo: int
+}
+
+class Inscripcion {
+  +fecha: Date
+  +numero: int
+}
+
+Carrera "1" -- "0..*" Materia : contiene
+Materia "0..*" -- "0..*" Materia : correlativa
+Materia "1" -- "1..*" Comision : tiene
+Comision "1" -- "1" Aula : seDictaEn
+Comision "1" -- "1" Docente : aCargo
+Alumno "1" -- "0..*" Inscripcion : realiza
+Inscripcion "1" -- "1" Comision : aComision
+Inscripcion "1" -- "1" Materia : aMateria
